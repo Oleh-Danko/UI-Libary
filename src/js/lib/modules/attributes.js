@@ -13,27 +13,20 @@ $.prototype.setAttr = function(attributeName, attributeValue) {
 };
 
 $.prototype.getAttr = function(attributeName) {
+    return this[0].getAttribute(attributeName);
+};
+
+$.prototype.toggleAttr = function(attributeName, attributeValue) {
     for (let i = 0;  i < this.length; i++) {
-        if (!this[i].getAttribute(attributeName)) {
-            continue;
+        if (this[i].hasAttribute(attributeName)) {
+            this[i].removeAttribute(attributeName);
+        } else if (attributeName && !attributeValue) {
+            this[i].setAttribute(attributeName, '');
+        } else {
+            this[i].setAttribute(attributeName, attributeValue);
         }
-        this[i].getAttribute(attributeName);
     }
     return this;
 };
 
 
-// $.prototype.toggleAtr = function(attributeName) {
-//     for (let i = 0;  i < this.length; i++) {
-//         if (!this[i].setAttribute) {
-//             return this;
-//         }
-//         this[i].toggleAttribute(attributeName);
-//         // if (this[i].getAttribute === attribute, value) {
-//         //     this[i].removeAttribute(attribute, value)
-//         // } else {
-//         //     this[i].setAttribute(attribute, value);
-//         // }
-//     }
-//     return this;
-// };
